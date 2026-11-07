@@ -9,17 +9,16 @@ NOTE: gh search issues does not accept multiple --language flags.
 Language filtering happens through the query string using language:python or language:javascript.
 -->
 
+## Queries
+
 <!-- From profile: "comfortable with Python" -->
 gh search issues "language:python" --label "good first issue" --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
-<!-- From profile: "want to get better at debugging" (Python bugs) -->
+<!-- From profile: "want to get better at debugging" -->
 gh search issues "language:python" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
-<!-- From profile: "want to get better at debugging and larger codebases" (Python bugs with more detail) -->
-gh search issues "language:python" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
-
-<!-- From profile: "willing to work in JavaScript as a way to improve" (JavaScript debugging) -->
-gh search issues "language:javascript" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+<!-- From profile: "get better at debugging and larger codebases" -->
+gh search issues "language:python" --label enhancement --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
 ## Ranking filters
 
