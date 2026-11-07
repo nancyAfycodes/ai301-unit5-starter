@@ -1,4 +1,4 @@
-# Scan Output: Issue Scout Results
+# Scan Output: Issue Scout Results (Complete)
 
 ## Scan 1: Single-repo baseline (2026-11-07)
 
@@ -51,17 +51,18 @@
 
 ---
 
-## Scan 4: Refined queries, fresh real-world search (2026-11-07) ⭐ FINAL
+## Scan 4: Refined queries, fresh real-world search (2026-11-07)
 
 **Summary:** Removed tier-2 query, kept Python bug + JavaScript bug + good first issue. Returned 299 unique issues.
 
 **Accepted (5 issues):**
-1. **earthobservations/wetterdienst#3878: Explorer's settings duplicate app settings** ⭐ **[CLAIMED]**
-   - **Real debugging task:** Settings duplication in explorer.vue/useSettings.ts
-   - **Large active repo:** 456 stars, 5 human commits today by gutzbenj
-   - **JavaScript/TypeScript:** Perfect for web dev class prep
-   - **Clean claim:** 0 comments, no assignees, no PRs
-   - **Clear proposal:** Maintainer laid out exact steps to fix
+1. **earthobservations/wetterdienst#3878: Explorer's settings duplicate app settings** ⭐ **[GRADED, DEFERRED]**
+   - Real debugging task: Settings duplication in explorer.vue/useSettings.ts
+   - Large active repo: 456 stars, 5 human commits today by gutzbenj
+   - JavaScript/TypeScript: Perfect for web dev class prep
+   - Clean claim: 0 comments, no assignees, no PRs
+   - Clear proposal: Maintainer laid out exact steps to fix
+   - **Grading verdict: ACCEPT** (but scope larger than typical first contribution)
 
 2. benholland1024/pluggybot#646: Robot gripper reports "closed on nothing"
    - 1-star personal project, maintainer's own working note
@@ -74,41 +75,109 @@
    - Commits are all from rfx-agent[bot] (no human maintainers visible)
    - **Conflict with profile:** "avoiding issues that require in-depth knowledge of unfamiliar languages"
 
+**Rejected (0 issues)**
+
 ---
 
-## JSON Results (Scan 4)
+## Scan 5: Python-only focus, fresh real-world search (2026-11-07) ⭐ FINAL
+
+**Summary:** Removed JavaScript queries, kept Python-only (good first issue, bug, enhancement). Returned 296 unique issues. All 5 top results came from Q2 (Python + bug), opened within last hour by repo maintainers, 0 comments.
+
+**Accepted (4 issues):**
+1. **samcorky/menagerist#294: Event loop is closed after first database command** ⭐ **[CLAIMED]**
+   - Pure Python debugging (asyncio.run + lru_cache engine outliving loop)
+   - Clear repro steps and likely cause
+   - Matches profile perfectly (Python debugging, larger codebase)
+   - 0 comments, no assignees, no linked PRs
+   - Smaller, focused scope
+   - **Grading verdict: ACCEPT** ✅
+
+2. **earthobservations/wetterdienst#3878: Explorer's settings duplicate app settings** ⭐ **[DEFERRED FOR LATER]**
+   - Settings duplication in explorer.vue/useSettings.ts
+   - 456 stars, actively maintained (5 commits today)
+   - TypeScript/Vue (JavaScript challenge)
+   - Multi-part refactor (larger scope)
+   - **Grading verdict: ACCEPT** (but with caveats on scope)
+
+3. charlieanna/autocode#2880: Every stage records cost_usd as null
+   - Python bug (cost_usd recorded as null)
+   - 1 star, AI-agent pipeline (steep ramp-up)
+   - **Grading verdict: ACCEPT**
+
+4. NVIDIA-AI-Blueprints/Multi-Agent-Intelligent-Warehouse#277: Prometheus/Grafana can't collect metrics
+   - Active repo (135 stars)
+   - Docker and monitoring config, not Python debugging
+   - **Grading verdict: ACCEPT**
+
+**Rejected (1 issue):**
+- Nitjsefnie-Harness-Commons/daedalus#1777 — maintainer has open PR #1770 (already working on it)
+
+---
+
+## Grading Results (Scan 5)
+
+### menagerist#294 — FINAL SELECTION ✅
 
 ```json
-[
-  {"item": "https://github.com/earthobservations/wetterdienst/issues/3878",
-   "checks": [
-     {"name": "Repo is active", "grade": "pass", "evidence": "Latest default-branch commit 2026-11-07 by gutzbenj (5 human commits today)"},
-     {"name": "Manageable scope", "grade": "pass", "evidence": "Body describes the task: Explorer dataSettings in explorer.vue never read app useSettings.ts (convertUnits/units 'persisted and read by nothing')"},
-     {"name": "Not already claimed", "grade": "pass", "evidence": "0 comments, no assignees, no linked PRs"}
-   ], "verdict": "accept"},
-  {"item": "https://github.com/benholland1024/pluggybot/issues/646",
-   "checks": [
-     {"name": "Repo is active", "grade": "pass", "evidence": "Latest commit 2026-11-07 (Merge PR #641 by benholland1024)"},
-     {"name": "Manageable scope", "grade": "pass", "evidence": "Body describes the defect: Gripper.held() in humanoid/arms.py wants half the requested force, so thin grips read 'closed on nothing'"},
-     {"name": "Not already claimed", "grade": "pass", "evidence": "0 comments, no assignees, no linked PRs"}
-   ], "verdict": "accept"},
-  {"item": "https://github.com/bk-squared/rfx/issues/2451",
-   "checks": [
-     {"name": "Repo is active", "grade": "pass", "evidence": "Latest commit 2026-11-07 (rfx-agent[bot])"},
-     {"name": "Manageable scope", "grade": "pass", "evidence": "Body describes the task: graded port builder falls back to freq_max/2 instead of _default_waveguide_f0"},
-     {"name": "Not already claimed", "grade": "pass", "evidence": "0 comments, no assignees, no linked PRs"}
-   ], "verdict": "accept"},
-  {"item": "https://github.com/bk-squared/rfx/issues/2450",
-   "checks": [
-     {"name": "Repo is active", "grade": "pass", "evidence": "Latest commit 2026-11-07 (rfx-agent[bot])"},
-     {"name": "Manageable scope", "grade": "pass", "evidence": "Body: refplane.py:544-546 calls decompose_wire_s_matrix without v_port, changing S11"},
-     {"name": "Not already claimed", "grade": "pass", "evidence": "0 comments, no assignees, no linked PRs"}
-   ], "verdict": "accept"},
-  {"item": "https://github.com/bk-squared/rfx/issues/2449",
-   "checks": [
-     {"name": "Repo is active", "grade": "pass", "evidence": "Latest commit 2026-11-07 (rfx-agent[bot])"},
-     {"name": "Manageable scope", "grade": "pass", "evidence": "Body: require_isolated_s_drive covers only lumped/wire ports, so two driven ports give |S11| 1.60"},
-     {"name": "Not already claimed", "grade": "pass", "evidence": "0 comments, no assignees, no linked PRs"}
-   ], "verdict": "accept"}
-]
+{
+  "item": "https://github.com/samcorky/menagerist/issues/294",
+  "checks": [
+    {
+      "name": "Repo is active",
+      "grade": "pass",
+      "evidence": "Latest default-branch commit 2026-11-07T21:23:01Z (feat(cli): show build info... #292)"
+    },
+    {
+      "name": "Manageable scope",
+      "grade": "pass",
+      "evidence": "Body gives repro steps, likely cause (lru_cache engine outliving asyncio.run loops), and two possible fixes"
+    },
+    {
+      "name": "Not already claimed",
+      "grade": "pass",
+      "evidence": "assignees: [], comments: 0, no cross-referenced PRs in timeline"
+    }
+  ],
+  "verdict": "accept"
+}
 ```
+
+### wetterdienst#3878 — DEFERRED FOR FUTURE ⭐
+
+```json
+{
+  "item": "https://github.com/earthobservations/wetterdienst/issues/3878",
+  "checks": [
+    {
+      "name": "Repo is active",
+      "grade": "pass",
+      "evidence": "Latest default-branch commit 2026-11-07T21:30:10Z (feat(providers)... #3868)"
+    },
+    {
+      "name": "Manageable scope",
+      "grade": "pass",
+      "evidence": "Body states a 3-part proposal plus a 'Check, and keep working' list; rubric passes any described task regardless of complexity"
+    },
+    {
+      "name": "Not already claimed",
+      "grade": "pass",
+      "evidence": "assignees: [], comments: 0, no cross-referenced PRs in timeline"
+    }
+  ],
+  "verdict": "accept"
+}
+```
+
+---
+
+## Summary: Path to menagerist#294
+
+- **Scan 1:** Classroom repos, high-comment issues
+- **Scan 2:** Real-world search, found #1088 (completed before claim)
+- **Scan 3:** Python validation, revealed tier-2 problem
+- **Scan 4:** Fixed tier-2, found wetterdienst#3878 (too complex for first)
+- **Scan 5:** Python-only focus, found menagerist#294 ⭐ **CLAIMED**
+
+**Total scans:** 5  
+**Total cost:** ~$5 course credit  
+**Result:** Perfect-fit first contribution + strong backup challenge for later
