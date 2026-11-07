@@ -15,8 +15,8 @@ gh search issues "language:python" --label "good first issue" --state open --lim
 <!-- From profile: "want to get better at debugging" (Python bugs) -->
 gh search issues "language:python" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
-<!-- From profile: "want to get better at debugging and larger codebases" (Python tier-2) -->
-gh search issues "language:python" --label "tier-2" --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+<!-- From profile: "want to get better at debugging and larger codebases" (Python bugs with more detail) -->
+gh search issues "language:python" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
 <!-- From profile: "willing to work in JavaScript as a way to improve" (JavaScript debugging) -->
 gh search issues "language:javascript" --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
