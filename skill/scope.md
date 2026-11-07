@@ -42,4 +42,4 @@ you want to avoid. It still never changes a verdict: fit cannot
 rescue an issue your rubric rejects, and cannot sink one it
 accepts. -->
 
-(Paste your fit profile here.)
+I'm comfortable with Python, but not necessarily JavaScript, however, I'm willing to work in JavaScript as a way to improve upon my skills and coding ability in JavaScript. I want to get better at debugging and working with larger codebases. I'm avoiding issues that'll require in-depth knowledge of unfamiliar programming languages.
