@@ -1,62 +1,32 @@
 # Search strategy: where your scout looks, and why
 
-<!--
-THIS IS THE PART YOU WRITE. The scout in SKILL.md executes whatever
-queries and filters you define here. It ships empty on purpose: the
-strategy is your judgment about where YOUR first contribution lives,
-and a scan without authored queries is just someone else's defaults.
-
-A filled strategy must contain:
-
-1. At least one query in the Queries section. Each query is a real
-   `gh search issues` invocation, and each should trace to a sentence
-   of your fit profile in scope.md: if you cannot say which sentence
-   produced a query, the query is probably not yours. Search breadth
-   is the point at this stage: prefer generous limits and let the
-   ranking filters do the narrowing.
-
-2. At least one ranking filter in the Ranking filters section. A
-   filter is a condition or an ordering over fields the search
-   results already carry (last activity date, assignee presence,
-   label set, comment count, repo). It must be checkable from the
-   result fields alone: if deciding it would need opening the issue
-   page, it belongs in your rubric, not here. Ranking is the free
-   stage; keep it free. Make at least one filter an ordering, or
-   state your tie-break: with drop conditions alone, the scout takes
-   the top of whatever order the searches happened to return, and
-   the graded candidates stop being traceable to you.
-
-3. The top-N line, kept or deliberately changed.
--->
-
 ## Queries
 
-<!-- Real gh search invocations, one per line, each with a comment
-naming the fit-profile sentence it came from. Example SHAPE (write
-your own; these values belong to nobody):
+<!-- Each query traces to a sentence in your fit profile (scope.md).
+Test each one in your terminal before the scout runs it. -->
 
-gh search issues --label "good first issue" --language python --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
--->
+<!-- From profile: "comfortable with Python, willing to work in JavaScript as a way to improve" -->
+gh search issues --language python --language javascript --label "good first issue" --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+<!-- From profile: "want to get better at debugging" -->
+gh search issues --language python --language javascript --label bug --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+<!-- From profile: "get better at debugging and larger codebases" -->
+gh search issues --language python --language javascript --label "tier-2" --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+
+<!-- From profile: "willing to work in JavaScript" (frontend work often involves JS) -->
+gh search issues --language python --language javascript --label frontend --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
 
 ## Ranking filters
 
-<!-- Conditions and orderings over the free result fields, applied in
-the order written. State each so a stranger could apply it and get
-your ordering. Example SHAPES (write your own):
+Apply these rules in order to rank results from all queries:
 
-- drop any result with an assignee
-- drop any result not updated in the last 60 days
-- prefer fewer comments over more
--->
+1. **Drop any issue with >5 comments** — if `commentsCount` is > 5, skip it. High comment counts often mean the issue is already being discussed or claimed in comments (this repo uses comment claims, not assignees).
+2. **Prefer bugs** — issues with the `bug` label rank higher. This aligns with your goal to get better at debugging.
+3. **Prefer debugging-related labels over CI/infrastructure** — if an issue has `bug`, `safety`, `ingestion`, or `rag` labels, rank it higher than `devops`, `enhancement`, or `api` alone. This filters out feature work mislabeled as bugs.
+4. **Prefer tier-2 and tier-3 over tier-1** — issues with `tier-2` or `tier-3` labels rank higher than `tier-1`. These represent larger codebases.
+5. **Fewest comments first** — sort by `commentsCount` ascending. Ties go to issues updated more recently.
 
 ## How many to grade
 
 Grade the top **5** ranked results per scan.
-
-<!-- Five is the default because grading is the only stage that costs
-money: about $0.20 per candidate, so a scan is about $1, and you can
-iterate the strategy several times for less than one full regression
-run. You need one good issue, not ten. Raising this number is
-allowed, but it is a decision you state here in a sentence, with the
-cost you are accepting; it is not a number you bump because a scan
-disappointed you once. -->
