@@ -33,13 +33,4 @@ and claiming later is how two strangers do the same work twice.
 
 ## Your fit profile
 
-<!-- Paste this forward from your sandbox scope.md, and update it:
-it now does more work. Besides ranking the issues your rubric
-accepts, it steers WHERE the scout searches: your search-strategy.md
-queries should each trace to a sentence here, so name the languages,
-tools, and project areas you actually want to work in, and anything
-you want to avoid. It still never changes a verdict: fit cannot
-rescue an issue your rubric rejects, and cannot sink one it
-accepts. -->
-
-I'm comfortable with Python, but not necessarily JavaScript, however, I'm willing to work in JavaScript as a way to improve upon my skills and coding ability in JavaScript. I want to get better at debugging and working with larger codebases. I'm avoiding issues that'll require in-depth knowledge of unfamiliar programming languages.
+I'm comfortable with Python, and I will prefer issues with Python. I want to get better at debugging and working with moderate to larger codebases. I'm avoiding issues that'll require in-depth knowledge of unfamiliar programming languages.
