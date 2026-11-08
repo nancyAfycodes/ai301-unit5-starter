@@ -18,9 +18,10 @@ Apply these rules in order to rank results from all queries:
 1. **Drop any issue with an assignee.** If `assignees` is not empty, someone already has it.
 2. **Drop any issue with more than 5 comments.** If `commentsCount` > 5, skip it. High counts often mean the issue is being discussed or claimed in comments.
 3. **Drop any issue not updated in the last 90 days.** Use `updatedAt`. Stale issues are often abandoned or already fixed.
-4. **Prefer bugs.** Issues with the `bug` label rank higher, which matches my goal of getting better at debugging.
-5. **Prefer Python over JavaScript,** but keep at least two JavaScript issues in the top five so I still get the practice.
-6. **Fewest comments first.** Sort by `commentsCount` ascending. Ties go to the more recently updated issue.
+4. **Keep at most one issue per repository.** Use `repository.nameWithOwner`. If a repo has several results, keep only the best-ranked one so the top five covers different projects.
+5. **Prefer bugs.** Issues with the `bug` label rank higher, which matches my goal of getting better at debugging.
+6. **Prefer Python over JavaScript,** but keep at least two JavaScript issues in the top five so I still get the practice.
+7. **Fewest comments first.** Sort by `commentsCount` ascending. Ties go to the more recently updated issue.
 
 ## How many to grade
 
