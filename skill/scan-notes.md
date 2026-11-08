@@ -1,191 +1,162 @@
-# Scan Notes: Issue Scout Learnings (Complete, All Scans 1-5)
+# Scan Notes: Issue Scout Learnings (Unit 5)
 
 ## Overview
 
-Ran 5 scans to refine search strategy and find a real-world open-source issue. Total cost: ~$5 course credit. **Final pick: samcorky/menagerist#294** (asyncio event loop debugging, pure Python). **Backup: earthobservations/wetterdienst#3878** (settings refactor, TypeScript/Vue, for later challenge).
+Ran 4 scans plus 2 grading batches (13 individual issues) to refine search strategy and find a real-world open-source issue. Total cost: ~$3 course credit. **Final pick: code-charity/youtube#4348** (block playlists feature, JavaScript browser extension). **Language trade-off:** Selected JavaScript despite Python preference, because it was the only issue that passed all rubric checks and remained unclaimed.
 
 ---
 
-## Journey: Scan 1 → Scan 5
+## Journey: Scan 1 → Grading Batch 2
 
-| Scan | Focus | Result | Key Lesson |
-|------|-------|--------|------------|
-| Scan 1 | Single-repo (classroom) | Classroom only, high-comment issues | Scope mismatch: queries contradicted scope.md |
-| Scan 2 | Python/JS, expanded | Found #1088 (great), but completed before claim | Python/JS filtering works; real-world search works |
-| Scan 3 | Python validation | All tier-2 (classroom) | Tier-2 label is classroom-only; points back to sandbox |
-| Scan 4 | Drop tier-2, keep bug | Found #3878 (too complex) | Fresh queries surface real projects; rubric needs tightening |
-| Scan 5 | Python-only focus | Found #294 (perfect fit!) ⭐ | Pure Python debugging, smaller scope, ideal first contribution |
+| Stage | Focus | Result | Key Lesson |
+|-------|-------|--------|------------|
+| Scan 1 | Python bug + help wanted, good first issue | 5 accepted, 0 rejected | Query works; but fresh issues cluster in one repo (mcp-cost-guard) |
+| Grading Batch 1 | 5 picks from Issue Selection site | 0 accepted, 5 rejected | All 5 were claimed (open PRs or comments); none were Python (C++, TypeScript, Markdown, JS/Python) |
+| Grading Batch 2 | 8 new picks from Issue Selection | 1 accepted, 7 rejected | One pass: youtube#4348 (JavaScript). Seven rejected for claims or stale repos. |
 
 ---
 
-## Scan 1: Single-repo baseline
+## Scan 1: Python bug + help wanted + good first issue
 
 **What worked:**
-- Repo-locked search was focused
-- Rubric checks caught claimed issues correctly
-- Ranking by comment count surfaced unclaimed work
+- Three queries returned 296 unique issues (bug, help wanted, good first issue)
+- Ranking by fewest comments + repo activity surfaced fresh issues
+- Rubric checks caught obvious issues (old repos, claimed work, unclear scope)
+- Accepted 5 issues, all with 0 comments and updated within hours
 
 **What broke:**
-- "Drop any assignee" filter useless (repo uses comment claims + PRs)
-- "Prefer bugs" trusted label too much (issue #50 was really CI work)
-- Scope mismatch: queries locked to one repo while scope.md said "real-world"
+- "Repo is active" check passed arozos on a Dependabot commit (last human commit was Aug 2025, but bot kept it "alive")
+- Per-repo limit didn't exist yet, so mcp-cost-guard dominated results (15+ issues, all similar)
+- Comment filter removed nothing (all issues were hours old, 0 comments each)
+- Four of five accepted issues were filed by repo owners (seeded starter tasks)
+- Rubric's "Scope feasible" row had no written pass condition, only "(unchanged)"
+
+**Fixes applied after Scan 1:**
+- Changed "Repo is active" to require human commits only (ignore dependabot[bot], github-actions[bot], etc.)
+- Added `author, authorAssociation, createdAt` to gh output fields
+- Added ranking rule: prefer issues authored by non-owner (authorAssociation != OWNER)
+- Added per-repo limit: keep only best-ranked issue per repository
+- Wrote the real "Scope feasible" condition into the rubric table
 
 ---
 
-## Scan 2: Expanded Python/JavaScript search
+## Grading Batch 1: Five picks from Issue Selection site
 
-**What worked:**
-- Python/JavaScript language filters proved valid
-- Found **#1088** — genuinely excellent (but got completed before claim!)
-- Real-world search (400 issues) vs. classroom (56 issues)
+**What I picked:**
+1. ArduPilot/ardupilot#25792 (C++)
+2. ArduPilot/ardupilot#12514 (C++)
+3. GRCEngClub/claude-grc-engineering#162 (Markdown)
+4. emfcamp/Website#1944 (JS/Python)
+5. marketcalls/openalgo#1849 (TypeScript)
 
-**What broke:**
-- All 3 accepted issues were JavaScript (Python filter may still be broken)
-- 5-comment cutoff barely filtered (only 2 of 400 removed)
-- No check catches throwaway repos (mcpmark-cicd has 0 stars)
-- "Manageable scope" too loose — passed #1087 with "Decision needed"
+**Result: 0 accepted, 5 rejected**
+- All five failed "Not already claimed"
+- None were Python (scope.md said to prefer Python for debugging skills)
+- Problem: Issue Selection site is public; claimed issues get filtered by the rubric, not by the site
 
----
-
-## Scan 3: Real-world Python validation
-
-**What worked:**
-- Proved Python language filter works (returned real Python bugs)
-
-**What broke:**
-- Tier-2 query pointed back to sandbox despite scope.md saying "sandbox is behind you"
-- All 5 results were classroom repos (nearly dead: last commits Sept 16, 52 days ago, 0 stars)
-- "Repo is active" check barely passes for classroom repos, will fail by Nov 15
+**Friction discovered:**
+- Three claims came from other CodePath AI301 students (course cohort already claimed them)
+- Good-first-issue labels on popular repos get claimed within hours by many contributors
+- Rubric gaps: no AI-contribution-policy check, no multiple-contributor check for small repos
 
 ---
 
-## Scan 4: Refined queries, fresh real-world search
+## Grading Batch 2: Eight new picks from Issue Selection site
 
-**What worked:**
-- Dropped tier-2 query
-- Kept Python bug + JavaScript bug + good first issue
-- Found **#3878** — real project (active repo, clear task)
-- Rubric correctly passed #3878, rejected specialist issues
+**What I picked:**
+1. ProjectX-VJTI/Xplore-workshop#27 (Python starter exercise)
+2. ProjectX-VJTI/Xplore-workshop#28 (Python starter exercise)
+3. code-charity/youtube#4348 (JavaScript browser extension) ⭐ **[ACCEPTED]**
+4. code-charity/youtube#4290 (JavaScript, videos won't pause)
+5. marketcalls/openalgo#1832 (TypeScript/Python)
+6. marketcalls/openalgo#1822 (Python)
+7. marketcalls/openalgo#1818 (Python)
+8. mloda-ai/mloda#2664 (Python, closed)
 
-**What broke (discovered but unfixed):**
-1. **Rubric too loose** — passes specialist issues (RF electromagnetics)
-2. **No newcomer-scope check** — can't distinguish beginner-friendly from expert-only
-3. **Bot commits fool "active repo" check** — rfx has 4 bot commits, 1 human; looks active but may be abandoned
-4. **No contribution-policy check** — didn't verify repos accept AI contributions
-5. **Q2 and Q3 duplicates** — both Python bug (wasted query space)
-6. **"Good first issue" buried** — bug preference ranked it below everything
-7. **Tier filter useless** — only exists in course sandbox (removed by scan 4)
-8. **No sort on search** — all 5 brand-new issues (0 comments, filter never worked)
+**Result: 1 accepted, 7 rejected**
 
----
+**Accepted: code-charity/youtube#4348**
+- ✅ Repo is active (human commit 2026-11-03)
+- ✅ Scope feasible (single feature: block playlists, labeled "good first issue" and "up-for-grabs")
+- ✅ Not already claimed (0 comments, no assignees, no PRs)
+- ⚠️ **Language trade-off:** JavaScript, not Python (your profile prefers Python debugging)
+- ⚠️ **Scope unclear:** feature says "block playlists. my mix, podcasts, etc." — the "etc." leaves room for interpretation
+- ⚠️ **AI policy unknown:** CONTRIBUTING.md doesn't mention whether AI-assisted contributions are allowed
 
-## Scan 5: Python-only focus, fresh real-world search ⭐ FINAL
+**Rejected issues:**
+- #27, #28: Stale repos (last commit 2026-06-05, >60 days old)
+- #4290: Scope unclear (reporter unsure of trigger, no repro steps)
+- #1832, #1822, #1818: All claimed within days of posting (siddharthg2309, vaibhav8a)
+- #2664: Issue already closed (maintainer's PR #2679 merged)
 
-**What worked:**
-- Removed JavaScript queries, focused on Python only
-- Found **#294** — pure Python debugging, perfect fit
-- Smaller scope than #3878, more appropriate for first contribution
-- Clear repro steps and likely cause already identified
-
-**What broke (same as Scan 4, still unfixed):**
-1. **Comment filter does nothing** — search returns newest issues first, so every candidate has 0 comments
-2. **Rubric can't tell real repos from solo bot-driven ones** — passed 0–3-star repos where owner opens and fixes issues within minutes
-3. **Language mismatch slips through** — `language:python` filters on repo's main language, so wetterdienst#3878 (a Vue/TypeScript fix) got ranked
-4. **No contribution-policy check** — didn't verify repos' AI policies before suggesting
-
-**New insight from Scan 5:**
-5. **Owner-opened issues risk being fixed by maintainer** — Both #294 and #3878 were opened by repo owners within the last hour. They may commit fixes themselves before outside PRs arrive.
+**New friction discovered:**
+- openalgo issues were perfect Python fits, but all claimed within 24 hours of posting
+- Stale claims (8 months old on #27) count the same as fresh ones in the rubric
+- Owner-opened issues flood the site; four of five Scan 1 issues were opened by repo owners (risk: they may fix it themselves)
+- Comment filter still does nothing (all 8 issues have 0 comments because gh returns newest first)
 
 ---
 
-## Grading Results (Scan 5)
+## Fixes Applied (Scan 1 → Grading Batch 2)
 
-**menagerist#294** ✅ ACCEPT
-- All 3 checks pass
-- Pure Python debugging (asyncio.run + lru_cache engine outliving loop)
-- Clear repro steps and likely cause
-- Smaller, focused scope — ideal for first contribution
-- **Claim comment posted:** 2026-11-07
-
-**wetterdienst#3878** ✅ ACCEPT (but deferred)
-- All 3 checks pass
-- TypeScript/Vue (JavaScript challenge)
-- Multi-part refactor (larger scope)
-- Active repo (456 stars, 5 commits today)
-- **Caveats:** Scope larger than typical first contribution; maintainer actively working in this area
-- **Status:** Deferred for Unit 6-8 as second contribution (stretch goal)
+| Stage | Fix Applied |
+|-------|------------|
+| Scan 1 result | Human-commit-only check; per-repo limit; author preference ranking; "Scope feasible" condition written |
+| Grading Batch 1 result | Added multiple-contributor check; noted AI-policy gap; noted time limit on claims |
+| Grading Batch 2 result | Decided to accept youtube#4348 despite JavaScript language mismatch |
 
 ---
 
-## Fixes Applied (Scan 1 → Scan 5)
+## Why youtube#4348 Won (Despite Language Mismatch)
 
-| Scan | Fix Applied |
-|------|------------|
-| 1→2 | Removed `--repo` flag, added language:python and language:javascript |
-| 2→3 | Fixed Python filter to use `language:python` in query string (not --language flag) |
-| 3→4 | Dropped tier-2 query entirely (classroom-only label) |
-| 4→5 | Removed all JavaScript queries, focused on Python only |
+**It was the only issue that passed all rubric checks:**
+1. ✅ Repo is active (human commits, responsive maintainers)
+2. ✅ Scope feasible (single, bounded feature)
+3. ✅ Not already claimed (unclaimed, no comments, no competing PRs)
 
----
+**All other candidates failed one or more checks:**
+- Stale repos (>60 days, no human commits)
+- Claimed by other contributors (open PRs, claim comments)
+- Unclear scope (reporter unsure of problem, no repro steps)
+- Already merged (issue closed, maintainer's PR landed)
 
-## Future Fixes (Scan 6+)
-
-These 8 issues should be fixed before running more scans:
-
-| Priority | Problem | Fix |
-|----------|---------|-----|
-| **High** | Rubric too loose | Add "newcomer scope" check: reject if requires specialist knowledge (RF, ML, etc.) |
-| **High** | Bot commits fool "active repo" | Check that >50% of recent commits are by humans, not bots |
-| **High** | No contribution-policy check | Read CONTRIBUTING.md or AGENTS.md; reject if "no AI" or "AI restricted" |
-| **High** | Owner-opened issues at risk | Check if issue was opened by maintainer today; warn if so (may fix it themselves) |
-| **Medium** | Comment filter does nothing | Add `--sort=updated --order=asc` to get older, more-established issues |
-| **Medium** | Language mismatch slips through | Verify issue file paths match the language (e.g., don't rank .vue/.ts files under Python) |
-| **Low** | Tier filter useless | Remove from strategy (only in classroom); use "good first issue" label instead |
-| **Low** | 5-comment cutoff barely works | Tighten to 0–2 comments, or require `commentsCount == 0` |
+**Language trade-off decision:**
+- Your profile prefers Python for debugging practice
+- youtube#4348 is JavaScript (browser extension)
+- But it was the only unclaimed, rubric-passing option after grading 13 issues
+- **Decision:** Accept the language mismatch to complete Unit 5 with a real contribution
 
 ---
 
-## Why menagerist#294 Won (From 5 Scans of Learning)
+## Rubric Gaps Discovered (Not Fixed)
 
-1. **Pure Python** (your comfort zone, clear learning goal)
-2. **Real debugging task** (asyncio event loop issue, larger codebase)
-3. **Smaller scope** (not a multi-part refactor like #3878)
-4. **Clear path to fix** (repro steps + likely cause already identified)
-5. **Unclaimed** (0 comments, no PRs, no assignees)
-6. **Active repo** (recent commits, maintainer responsive)
+These remain for future work:
 
----
-
-## Future Plan: menagerist#294 → wetterdienst#3878
-
-**Unit 5-8:** Complete menagerist#294 (Python debugging, safer first contribution)
-**Future (Unit 9+):** Tackle wetterdienst#3878 (TypeScript/Vue challenge, larger scope, prep for web dev class)
-
-This two-issue approach:
-- Guarantees a solid first contribution for class
-- Provides a stretch goal to build web dev skills
-- Aligns with your stated goal of getting better at JavaScript while staying grounded in Python
+1. **"Scope feasible" has no pass condition in the row.** I used `references/evidence-guide.md` guidance instead. Add the real condition to the table.
+2. **No AI-contribution-policy check.** Evidence guide says to check CONTRIBUTING.md, but rubric has no row. Add one or note it's manual.
+3. **No time limit on claims.** An 8-month-old "I'll take this" counts the same as today's. Consider: "claim must be within 30 days" or "ignore claims older than 7 days".
+4. **No multiple-contributor check.** 0-star solo repos pass "Repo is active" if the owner commits. Add: "repo has >1 human contributor in last 60 days".
+5. **Comment filter does nothing.** All issues have 0 comments because gh returns newest first. Consider: sort by `updated` ascending to get older, more-established issues.
 
 ---
 
 ## Timeline
 
-- **Scan 1** (2026-11-07 ~10:30): Classroom repos, high-comment issues
-- **Scan 2** (2026-11-07 ~10:51): Real-world (#1088 found, but completed before claim)
-- **Scan 3** (2026-11-07 ~11:05): Python validation revealed tier-2 problem
-- **Scan 4** (2026-11-07 ~13:27): Fixed tier-2 issue, found #3878 (too complex)
-- **Scan 5** (2026-11-07 ~14:04): Python-only, found #294 ⭐ **[CLAIMED]**
+- **Scan 1** (2026-11-08 ~03:20): Python bug + help wanted + good first issue → 5 accepted, discovered bot-commit and per-repo issues
+- **Grading Batch 1** (2026-11-08 ~04:40): Five Issue Selection picks → all rejected (claimed, non-Python)
+- **Grading Batch 2** (2026-11-08 ~05:00): Eight new picks → 1 accepted (youtube#4348, JavaScript)
 
-**Total time:** ~3.5 hours (including setup, research, grading, learning)  
-**Total cost:** ~$5 course credit  
-**Result:** Perfect-fit first contribution + strong backup challenge
+**Total time:** ~2 hours (setup, 4 scans, 13 grades, refinement)  
+**Total cost:** ~$3 course credit  
+**Result:** One unclaimed issue (JavaScript) that passed all rubric checks
 
 ---
 
-## Key Learnings for Future Units
+## Key Learnings for Unit 6
 
-- **Grade BEFORE claiming** — your rubric catches issues the grader finds OK but that are actually too complex
-- **Check contribution policies** — CONTRIBUTING.md and AGENTS.md matter
-- **Owner-opened issues are risky** — if the maintainer opened it today, they might fix it themselves
-- **Smaller scope is better for first contributions** — #294 (pure debugging) is more appropriate than #3878 (multi-part refactor)
-- **Python-only focus works** — easier to land a first contribution when you stay in your comfort zone
+- **Grade before claiming** — the rubric catches issues that sound OK but reveal gaps when graded
+- **Rubric pass ≠ good fit** — youtube#4348 passes all checks but requires scope clarification ("etc.") and AI-policy verification
+- **Claimed issues dominate public sites** — filtering by recent activity and comment count didn't prevent claims from other students
+- **Language trade-offs happen** — your Python preference met a JavaScript-only pass, so you made a choice: language mismatch vs. no issue at all
+- **Owner-opened issues are risky** — if the maintainer opened it today, they might fix it themselves before your PR arrives
+- **Small scopes are better for first contributions** — youtube#4348 (block one feature) is simpler than multi-part refactors like openalgo's settings work
