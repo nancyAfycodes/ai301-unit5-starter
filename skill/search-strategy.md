@@ -15,13 +15,15 @@ gh search issues "language:javascript" --label bug --no-assignee --state open --
 
 Apply these rules in order to rank results from all queries:
 
-1. **Drop any issue with an assignee.** If `assignees` is not empty, someone already has it.
-2. **Drop any issue with more than 5 comments.** If `commentsCount` > 5, skip it. High counts often mean the issue is being discussed or claimed in comments.
-3. **Drop any issue not updated in the last 90 days.** Use `updatedAt`. Stale issues are often abandoned or already fixed.
-4. **Keep at most one issue per repository.** Use `repository.nameWithOwner`. If a repo has several results, keep only the best-ranked one so the top five covers different projects.
-5. **Prefer bugs.** Issues with the `bug` label rank higher, which matches my goal of getting better at debugging.
-6. **Prefer Python over JavaScript,** but keep at least two JavaScript issues in the top five so I still get the practice.
-7. **Fewest comments first.** Sort by `commentsCount` ascending. Ties go to the more recently updated issue.
+1. Drop any issue with an assignee.
+2. Drop any issue with more than 5 comments.
+3. Drop any issue not updated in the last 90 days.
+4. Drop any issue whose title contains "Escrowed" or a "$" bounty amount.
+5. Deprioritize tracking issues: titles that reference two or more issue numbers, like "(#237, #239, #240)".
+6. Keep at most one issue per repository (repository.nameWithOwner), the best-ranked one.
+7. Prefer bugs.
+8. Prefer Python over JavaScript, but keep at least two JavaScript issues in the top five.
+9. Fewest comments first. Ties go to the more recently updated issue.
 
 ## How many to grade
 
