@@ -22,7 +22,7 @@ Apply these rules in order to rank results from all queries:
 5. Deprioritize tracking issues: titles that reference two or more issue numbers, like "(#237, #239, #240)".
 6. Keep at most one issue per repository (repository.nameWithOwner), the best-ranked one.
 7. Prefer bugs.
-8. Prefer Python over JavaScript, but keep at least two JavaScript issues in the top five.
+8. Prefer Python.
 9. Fewest comments first. Ties go to the more recently updated issue.
 
 ## How many to grade
