@@ -3,13 +3,13 @@
 ## Queries
 
 <!-- From profile: "I'm comfortable with Python, but not necessarily JavaScript." -->
-gh search issues "language:python" --label "good first issue" --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+gh search issues "language:python" --label "good first issue" --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url,author,authorAssociation,createdAt
 
 <!-- From profile: "I want to get better at debugging and working with larger codebases." -->
-gh search issues "language:python" --label bug --label "help wanted" --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+gh search issues "language:python" --label bug --label "help wanted" --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url,author,authorAssociation,createdAt
 
-<!-- From profile: "I'm willing to work in JavaScript as a way to improve upon my skills and coding ability in JavaScript." -->
-gh search issues "language:javascript" --label bug --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url
+<!-- From profile: "For now I want to work in Python, and I'm avoiding issues that need in-depth knowledge of unfamiliar languages." -->
+gh search issues "language:python" --label "good first issue" --label bug --no-assignee --state open --limit 100 --json title,repository,labels,assignees,commentsCount,updatedAt,url,author,authorAssociation,createdAt
 
 ## Ranking filters
 
