@@ -1,6 +1,6 @@
 # Contribution: Add Playlist Blocking Support to ImprovedTube
 
-**Contribution Number:** 1
+**Contribution Number:** [1]
 
 **Student:** Nancy A
 
