@@ -26,9 +26,9 @@ I built a voice guard that checks my claim and other upstream posts against rule
 
 Implemented full playlist blocking feature across 5 files with comprehensive test coverage. All repo checks pass (npm install, npm test: 238 tests, npm run lint). Feature is complete and fully tested with 9 new blocklist-playlists tests. PR created and documented. Ship-manifest was fixed (lint command changed from `npm lint` to `npm run lint`). All core repo checks pass; pr-precheck validation identified formatting issues beyond the project scope; implementation is complete and verified with full test coverage.
 
-**Unit 8: [one line on the tool work]**
+**Unit 8: PR monitor with playbook-driven responses**
 
-[2-4 sentences: fill in Unit 8]
+Set up the PR monitor tool to read my PR state and draft next moves based on a playbook I wrote. The monitor drafted a "wait note" since my PR is only 1 day old and my playbook threshold is 5 days before nudging. I'll check again on November 14 if still quiet. The tool helped me set data-driven waiting criteria based on actual repo response patterns (3.56-day average across 9 recent merged PRs), and I documented clear rules for when to nudge, what to say, and when to close.
 
 ---
 
@@ -41,6 +41,8 @@ My scout graded it as accept with difficulty ambitious — the feature request l
 I chose this over waiting for a Python issue because it's unclaimed, the maintainer is responsive (commits daily), and I have a clear first step: trace how the existing blocklist code works and understand where playlist filtering fits. The issue description is sparse, so asking good questions upfront matters. On closer inspection, I noticed that contributing.md page has details that will help me in completing the project.
 
 **Claim comment:** https://github.com/code-charity/youtube/issues/4348#issuecomment-6721980800
+
+**Tool:** I used my Unit 5 issue-scout skill to search GitHub for unclaimed issues matching my profile. The scout ranked results by repo activity and author engagement, then graded them against my rubric (repo active, scope feasible, not claimed). After grading 13 candidates across 4 scans, only #4348 passed all checks and was unclaimed, making it the top pick despite being in JavaScript rather than my preferred programming language, Python.
 
 ---
 
@@ -135,6 +137,8 @@ What won't change: The overall architecture, message-passing system, or how vide
 
 **2026-11-09 00:15:** All tests pass (238 total, 9 new blocklist tests). Fixed indentation issues. Removed unnecessary commits. Ready for PR.
 
+**2026-11-10 01:25:** Installed PR monitor tool and created playbook with data-driven thresholds. Researched 9 recent merged PRs from code-charity/youtube; found average response time of 3.56 days. Set first-response threshold to 5 days, second-response to 7 days. Monitor drafted "wait note" for current PR (only 1 day old); next check date 2026-11-14.
+
 ---
 
 ## Pull Request
@@ -143,7 +147,10 @@ What won't change: The overall architecture, message-passing system, or how vide
 
 **Description:** Adds support for blocking entire playlist types (Mixes, Podcasts, etc.) in the blocklist settings. Extended blocklist from 2 types (videos, channels) to 3 (adding playlists). All repo checks pass (npm install, npm test: 238 tests, npm run lint). Includes 9 comprehensive test cases and full documentation.
 
-**Status:** Open, awaiting maintainer review
+**Maintainer Feedback:**
+**2026-11-10:** None yet (PR opened 2026-11-09, awaiting first review)
+
+**Status:** Awaiting review
 
 ---
 
